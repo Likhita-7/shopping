@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping Website - Cart</title>
+    <style>
+        /* Your CSS styles for the cart page */
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color:black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .cart-container {
+            margin: 20px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover; /* To preserve aspect ratio and cover the entire container */
+            margin-right: 10px;
+        }
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        .cart-item-info h3 {
+            margin: 0;
+        }
+        .cart-item-info p {
+            margin: 0;
+            color: #666;
+        }
+        .cart-item-price {
+            font-weight: bold;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        /* Center the buttons horizontally and vertically */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Style for the buttons */
+.go-to-cart {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+        .delete-button {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <main>
+        <div class="cart-container">
+            <!-- Cart items will be dynamically created here -->
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cartTotal">0</span>
+        </div>
+         
+        <button class="go-to-cart" onclick="window.location.href = 'ladies.html';">Go Back to Products</button>
+    </main>
+
+    <footer>
+        <!-- Footer content, including links and copyright information -->
+    </footer>
+
+    <script>
+        // JavaScript code to handle cart functionalities
+        // Function to retrieve cart items from local storage and display them in the cart page
+        function displayCartItems() {
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            var cartContainer = document.querySelector('.cart-container');
+            var cartTotal = 0;
+
+            cartContainer.innerHTML = ''; // Clear the cart container before populating
+
+            cartItems.forEach(function (item, index) {
+                var cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+
+                var productImage = document.createElement('img');
+                productImage.src = item.image_link; // Add the product image URL here
+                productImage.alt = item.name;
+                productImage.style.width = '100px';
+                productImage.style.height = '100px';
+                productImage.style.objectFit = 'cover';
+                cartItemElement.appendChild(productImage);
+
+                var cartItemInfo = document.createElement('div');
+                cartItemInfo.classList.add('cart-item-info');
+
+                var productName = document.createElement('h3');
+                productName.textContent = item.name;
+                cartItemInfo.appendChild(productName);
+
+                var productPrice = document.createElement('p');
+                productPrice.textContent = '$' + item.cost;
+                cartItemInfo.appendChild(productPrice);
+
+                cartItemElement.appendChild(cartItemInfo);
+
+                var deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function () {
+                    deleteFromCart(index);
+                });
+                cartItemElement.appendChild(deleteButton);
+
+                cartContainer.appendChild(cartItemElement);
+
+                cartTotal += item.cost;
+            });
+
+            document.getElementById('cartTotal').textContent = cartTotal.toFixed(2);
+        }
+
+        // Call the function to display cart items on page load
+        window.onload = displayCartItems;
+
+        // Function to handle deleting a product from the cart
+        function deleteFromCart(index) {
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            if (index >= 0 && index < cartItems.length) {
+                cartItems.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                displayCartItems();
+            }
+        }
+    </script>
+</body>
+</html>

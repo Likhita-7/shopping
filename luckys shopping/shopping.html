@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>lucky shopping</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Header takes auto height, rest takes remaining space */
+    grid-template-columns: 1fr; /* Single column layout */
+    align-items: center;
+    justify-items: center;
+    min-height: 100vh; /* Ensure body takes at least the full viewport height */
+    background-color: #f0f0f0;
+}
+
+.center {
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns, each taking equal space */
+    gap: 10px; /* Gap between items */
+    max-width: 800px;
+}
+
+/* Basic styling for the button */
+.image-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1; /* Allow the buttons to grow and take equal space */
+}
+
+/* Styling for the image inside the button */
+.image-button img {
+    width: 150px; /* Increase the width for bigger images */
+    height: 150px; /* Increase the height for bigger images */
+    margin-bottom: 5px; /* Add some spacing between the image and the text */
+}
+
+/* Styling for the text inside the button */
+.image-button span {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Styling for the heading */
+h1 {
+    text-align: center;
+    margin: 10px 0;
+    color: #333;
+}
+
+</style>
+</head>
+<body>
+    <h1 class="center">LUCKY'S SHOPPING</h1>
+    <div class="container">
+		 
+        <button class="image-button" id="ladiesbutton" onClick="window.location.href='ladies.html';">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfCvIb_XMnwcORdVNktC7fvAqu3bdEh-E86wnFxJZNmtY0v3omMPvRVtHjrf8Vq8FfqfY&usqp=CAU" alt="Small Image">
+            <span>LADIES</span>
+        </button>
+
+        <button class="image-button" id="menbutton" onClick="men()">
+            <img src="https://www.realmenrealstyle.com/wp-content/uploads/2011/06/How-To-Buy-A-Suit-For-Short-Skinny-Small-Men-1.jpg" alt="Small Image">
+            <span>MEN</span>
+        </button>
+
+        <button class="image-button" id="kidsbutton" onClick="kids()">
+            <img src="https://images.pexels.com/photos/36029/aroni-arsa-children-little.jpg?cs=srgb&dl=pexels-pixabay-36029.jpg&fm=jpg" alt="Small Image">
+            <span>KIDS</span>
+        </button>
+
+        <button class="image-button" id="electronicsbutton" onClick="electronics()">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1GdzgZA_Hpc4-yI3wf1VeC9kSdYZHhwrNRw&usqp=CAU" alt="Small Image">
+            <span>ELECTRONICS</span>
+        </button>
+        </div>
+        <script>
+        
+        function ladies(){
+			alert("ladies ");
+			windows.location.href="ladies.html";
+			
+		}
+		function men(){
+			alert("men ");
+			windows.location.href="men.html"
+		}
+		function kids(){
+			alert("kids");
+			windows.location.href="kids.html"
+		}
+		function electronics(){
+			alert("electronics");
+			windows.location.href="electronics.html"
+		}
+    
+    </script>
+
+	
+</body>
+</html>
